@@ -2,7 +2,11 @@ what i need???????
 
 
 1) beautiful page for creating blog.
+    =>Sections to need::
+        #heading,#content,#tag,#category
 2) beautiful page for editing blog.
+    =>Sections to need::
+        #heading,#content,#tag,#category
 3) create model for blog
 4) create model for user
     @ blog crud
@@ -13,4 +17,4 @@ what i need???????
 8) apply roles
     ++ error handling
     ++ reset password with email.
-9) and so on.....
+9) Include comment system.

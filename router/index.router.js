@@ -38,6 +38,14 @@ router.get('/blog',(req,res)=>{
     res.render('blog',{user})
 })
 
+//@@ CreateBlog -> to go create Blog page
+//@@ GET '/createBlog'
+//@@ public
+router.get('/create',(req,res)=>{
+    const user = req.body;
+    res.render('createBlog',{user})
+})
+
 
 //@@ Login -> to go login page
 //@@ GET '/login'
