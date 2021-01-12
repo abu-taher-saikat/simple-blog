@@ -5,8 +5,10 @@ const connectDB = async () => {
         useCreateIndex : true,
         useFindAndModify : false,
         useUnifiedTopology : true
+    },()=>{
+        console.log('mongodb is connected'.red.bold);
     });
-    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.bold);
+    // console.log(`MongoDB Connected: ${conn.connection.host}`.red.bold);
 }
 
 

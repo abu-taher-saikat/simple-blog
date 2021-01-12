@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+const Blog = require('../models/Blog');
 
 //@@ Index router to get home page
 //@@ GET '/'
@@ -7,6 +8,14 @@ const router = express.Router();
 router.get('/',(req,res)=>{
     const user = req.body;
     res.render('index',{user})
+})
+
+//@@ Dashboard router to get home page
+//@@ GET '/dashboard'
+//@@ Privet
+router.get('/dashboard',(req,res)=>{
+    const user = req.body;
+    res.render('dashboard',{user})
 })
 
 
@@ -29,22 +38,6 @@ router.get('/contact',(req,res)=>{
 })
 
 
-
-//@@ Blog -> to go Blog page
-//@@ GET '/blog'
-//@@ public
-router.get('/blog',(req,res)=>{
-    const user = req.body;
-    res.render('blog',{user})
-})
-
-//@@ CreateBlog -> to go create Blog page
-//@@ GET '/createBlog'
-//@@ public
-router.get('/create',(req,res)=>{
-    const user = req.body;
-    res.render('createBlog',{user})
-})
 
 
 //@@ Login -> to go login page

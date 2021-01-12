@@ -3,27 +3,32 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
 const path = require('path');
+const bodyParser = require("body-parser");
 
+dotenv.config({path : './config/config.env'})
 
 // Database
 const connectDB = require('./config/db')
+connectDB();
 // load env vars
-dotenv.config({path : './config/config.env'})
 
 
 // calling routes
 const index = require('./router/index.router');
+const blog = require('./router/blog.router');
 
 
 const app = express();
 // Body Parser
-app.use(express.json())
+app.use(express.json());
+// app.use(bodyParser.urlencoded({extended : false}))
 
 
 // Set Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 // set view engine
 app.set("view engine", "ejs");
+app.use(express.urlencoded({extended : false}))
 
 
 
@@ -39,6 +44,7 @@ if(process.env.NODE_ENV === 'development'){
 
 // init router
 app.use('/', index);
+app.use('/blog', blog)
 
 
 const PORT = process.env.PORT || 5000;
