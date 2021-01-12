@@ -1,0 +1,28 @@
+{
+  "name": "simple-blog",
+  "version": "1.0.0",
+  "description": "it's a simple blog. every single line that i know. i will do it here.i am trying to make a blog. in this seciton",
+  "main": "server.js",
+  "scripts": {
+    "test": "node.js ejs express mongodb mongoose",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "ejs",
+    "express",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "abu taher saikat",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.11",
+    "morgan": "^1.10.0"
+  }
+}

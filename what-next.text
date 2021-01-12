@@ -1,0 +1,16 @@
+what i need???????
+
+
+1) beautiful page for creating blog.
+2) beautiful page for editing blog.
+3) create model for blog
+4) create model for user
+    @ blog crud
+5) setting up login / register with jwt web token
+6) setting up passport google / facebook auth
+7) setting up auth middlewares
+    @user crud
+8) apply roles
+    ++ error handling
+    ++ reset password with email.
+9) and so on.....
