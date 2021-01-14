@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 dotenv.config({path : './config/config.env'})
 
+
 // Database
 const connectDB = require('./config/db')
 connectDB();
@@ -46,7 +47,8 @@ if(process.env.NODE_ENV === 'development'){
 // init router
 app.use('/', index);
 app.use('/blog', blog);
-app.use('/user', user)
+app.use('/user', user);
+//  passport.authenticate('jwt', { session : false }),
 
 
 const PORT = process.env.PORT || 3030;

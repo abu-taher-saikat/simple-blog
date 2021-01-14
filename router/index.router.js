@@ -27,7 +27,7 @@ router.get('/dashboard',async (req,res)=>{
         console.log(typeof(blog));
         const numberOfBlog = blog.length;
         // console.log(blog.length);
-        const user = req.body;
+        const user = req.user;
         res.render('dashboard',{user, numberOfBlog})
     }catch(err){
         console.log(err);
@@ -40,7 +40,7 @@ router.get('/dashboard',async (req,res)=>{
 //@@ GET '/about'
 //@@ public
 router.get('/about',(req,res)=>{
-    const user = req.body;
+    const user = req.user;
     res.render('about',{user})
 })
 
@@ -49,7 +49,7 @@ router.get('/about',(req,res)=>{
 //@@ GET '/contact'
 //@@ public
 router.get('/contact',(req,res)=>{
-    const user = req.body;
+    const user = req.user;
     res.render('about',{user})
 })
 

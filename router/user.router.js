@@ -8,13 +8,13 @@ const User = require('../models/User')
 //@@ GET '/user/'
 //@@ privet
 router.get('/',(req,res)=>{
-    // const user = req.body;
-    // res.render('blog',{user})
+    const user = req.body;
+    res.render('blog',{user})
 })
 
 
 //@@ Login -> to go login page
-//@@ GET '/login'
+//@@ GET 'user/login'
 //@@ public
 router.get('/login',(req,res)=>{
     const user = req.body;
@@ -22,14 +22,12 @@ router.get('/login',(req,res)=>{
 })
 
 //@@ Register -> to go login page
-//@@ GET '/register'
+//@@ GET 'user/register'
 //@@ public
 router.get('/register',(req,res)=>{
     const user = req.body;
     res.render('signup',{user})
 })
-
-
 
 
 

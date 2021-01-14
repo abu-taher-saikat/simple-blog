@@ -7,7 +7,6 @@ const Blog = require('../models/Blog');
 //@@ GET '/blog'
 //@@ public
 router.get('/',(req,res)=>{
-    const user = req.body;
     res.render('blog',{user})
 })
 
@@ -42,7 +41,7 @@ router.post('/',async (req,res)=>{
 //@@ GET '/createBlog'
 //@@ public
 router.get('/create',(req,res)=>{
-    const user = req.body;
+    const user = req.user;
     res.render('createBlog',{user})
 })
 
