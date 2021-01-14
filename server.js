@@ -16,6 +16,7 @@ connectDB();
 // calling routes
 const index = require('./router/index.router');
 const blog = require('./router/blog.router');
+const user = require('./router/user.router');
 
 
 const app = express();
@@ -44,10 +45,11 @@ if(process.env.NODE_ENV === 'development'){
 
 // init router
 app.use('/', index);
-app.use('/blog', blog)
+app.use('/blog', blog);
+app.use('/user', user)
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3030;
 const server = app.listen(PORT,()=>{
     console.log(`App listening on port ${process.env.NODE_ENV} and port on ${PORT}`.yellow);
 })

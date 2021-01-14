@@ -5,17 +5,33 @@ const Blog = require('../models/Blog');
 //@@ Index router to get home page
 //@@ GET '/'
 //@@ public
-router.get('/',(req,res)=>{
-    const user = req.body;
-    res.render('index',{user})
+router.get('/', async(req,res)=>{
+    let blogs = await Blog.find();
+    // console.log(blogs);
+    if(blogs){
+        const user = req.user;
+        res.render('index',{user , blogs })
+    }else{
+        res.redirect('/dashboard')
+    }
+
 })
 
 //@@ Dashboard router to get home page
 //@@ GET '/dashboard'
 //@@ Privet
-router.get('/dashboard',(req,res)=>{
-    const user = req.body;
-    res.render('dashboard',{user})
+router.get('/dashboard',async (req,res)=>{
+    const blog = await Blog.find({});
+
+    try{
+        console.log(typeof(blog));
+        const numberOfBlog = blog.length;
+        // console.log(blog.length);
+        const user = req.body;
+        res.render('dashboard',{user, numberOfBlog})
+    }catch(err){
+        console.log(err);
+    }
 })
 
 
@@ -40,21 +56,7 @@ router.get('/contact',(req,res)=>{
 
 
 
-//@@ Login -> to go login page
-//@@ GET '/login'
-//@@ public
-router.get('/login',(req,res)=>{
-    const user = req.body;
-    res.render('signin',{user})
-})
 
-//@@ Register -> to go login page
-//@@ GET '/register'
-//@@ public
-router.get('/register',(req,res)=>{
-    const user = req.body;
-    res.render('signup',{user})
-})
 
 
 

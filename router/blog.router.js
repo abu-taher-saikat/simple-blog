@@ -13,14 +13,16 @@ router.get('/',(req,res)=>{
 
 
 
+
+
 //@@ Post a Blog
 //@@ POST '/blog/'
 //@@ privet
 router.post('/',async (req,res)=>{
-    let blog = new Blog({
+    let blog = await new Blog({
         title : req.body.title,
         categories : req.body.categories,
-        description : req.body.description
+        description : req.body.description,
     })
 
     console.log(blog);
@@ -54,6 +56,26 @@ router.get('/editblog',(req,res)=>{
     res.render('editBlog',{user})
 })
 
+
+
+//@@ Blog -> to go induvisual Blog page
+//@@ GET '/blog/:id'
+//@@ public
+router.get('/:id',async (req,res)=>{
+    
+    let blog = await Blog.findById(req.params.id);
+    try{
+        console.log(blog);
+        if(blog){
+            const user = req.body;
+            res.render('page',{user, blog})
+        }else{
+            res.redirect('/')
+        }
+    }catch(err){
+        console.log(err);
+    }
+})
 
 
 
