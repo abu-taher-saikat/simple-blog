@@ -16,6 +16,5 @@ const requireAuth = (req, res, next)=>{
         })
     }else{
         res.redirect('/user/login');
-        // res.redirect('/login')
     }
 }
