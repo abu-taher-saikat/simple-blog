@@ -4,6 +4,11 @@ const morgan = require('morgan');
 const colors = require('colors');
 const path = require('path');
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser')
+const methodoverride  = require('method-override');
+
+const requireAuth = require('./middleware/authMiddleWare');
+const checkUser = require('./middleware/checkCurrentUser');
 
 dotenv.config({path : './config/config.env'})
 
@@ -23,6 +28,7 @@ const user = require('./router/user.router');
 const app = express();
 // Body Parser
 app.use(express.json());
+app.use(cookieParser());
 // app.use(bodyParser.urlencoded({extended : false}))
 
 
@@ -31,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set view engine
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended : false}))
+// methode override
+app.use(methodoverride("_method"))
 
 
 
@@ -45,10 +53,11 @@ if(process.env.NODE_ENV === 'development'){
 
 
 // init router
+app.get('*', checkUser);
 app.use('/', index);
 app.use('/blog', blog);
 app.use('/user', user);
-//  passport.authenticate('jwt', { session : false }),
+
 
 
 const PORT = process.env.PORT || 3030;

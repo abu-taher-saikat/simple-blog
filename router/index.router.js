@@ -9,12 +9,10 @@ router.get('/', async(req,res)=>{
     let blogs = await Blog.find();
     // console.log(blogs);
     if(blogs){
-        const user = req.user;
-        res.render('index',{user , blogs })
+        res.render('index',{ blogs })
     }else{
         res.redirect('/dashboard')
     }
-
 })
 
 //@@ Dashboard router to get home page
@@ -22,13 +20,12 @@ router.get('/', async(req,res)=>{
 //@@ Privet
 router.get('/dashboard',async (req,res)=>{
     const blog = await Blog.find({});
-
+    // console.log(blog);
     try{
         console.log(typeof(blog));
         const numberOfBlog = blog.length;
-        // console.log(blog.length);
-        const user = req.user;
-        res.render('dashboard',{user, numberOfBlog})
+
+        res.render('dashboard',{blog, numberOfBlog})
     }catch(err){
         console.log(err);
     }
@@ -40,8 +37,7 @@ router.get('/dashboard',async (req,res)=>{
 //@@ GET '/about'
 //@@ public
 router.get('/about',(req,res)=>{
-    const user = req.user;
-    res.render('about',{user})
+    res.render('about')
 })
 
 
@@ -49,8 +45,7 @@ router.get('/about',(req,res)=>{
 //@@ GET '/contact'
 //@@ public
 router.get('/contact',(req,res)=>{
-    const user = req.user;
-    res.render('about',{user})
+    res.render('contact')
 })
 
 

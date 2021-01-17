@@ -35,7 +35,7 @@
 
               <form
                 method="POST"
-                action="/user/signup"
+                action="/user/register"
                 class="register-form"
                 id="register-form"
               >
@@ -50,6 +50,7 @@
                     placeholder="Your Name"
                   />
                 </div>
+
                 <div class="form-group">
                   <label for="email"><i class="zmdi zmdi-email"></i></label>
                   <input
@@ -58,7 +59,9 @@
                     id="email"
                     placeholder="Your Email"
                   />
+                  <div class="error email"></div>
                 </div>
+
                 <div class="form-group">
                   <label for="password"><i class="zmdi zmdi-lock"></i></label>
                   <input
@@ -67,7 +70,9 @@
                     id="pass"
                     placeholder="Password"
                   />
+                  <div class="error pasword"></div>
                 </div>
+
                 <div class="form-group">
                   <label for="password2"
                     ><i class="zmdi zmdi-lock-outline"></i
@@ -79,6 +84,7 @@
                     placeholder="Repeat your password"
                   />
                 </div>
+
                 <div class="form-group">
                   <input
                     type="checkbox"
@@ -86,12 +92,13 @@
                     id="agree-term"
                     class="agree-term"
                   />
+
                   <label for="agree-term" class="label-agree-term"
                     ><span><span></span></span>I agree all statements in
                     <a href="#" class="term-service">Terms of service</a></label
                   >
                 </div>
-                <div class="form-group form-button">
+                <!-- <div class="form-group form-button">
                   <input
                     type="submit"
                     name="signup"
@@ -99,7 +106,9 @@
                     class="form-submit"
                     value="Register"
                   />
-                </div>
+                </div> -->
+
+                <button>Sign Up</button>
               </form>
             </div>
             <div class="signup-image">
@@ -121,7 +130,43 @@
     <!-- footer -->
     <%- include ('partials/footer.ejs') %>
 
+    <script>
+      const form = document.querySelector("from");
+      const emailError = document.querySelector(".email.error");
+      const passwordError = document.querySelector(".password.error");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // reset errors
+        emailError.textContent = "";
+        passwordError.textContent = "";
+
+        // get the value
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+          const res = await fetch("/signup", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          const data = await res.json();
+          console.log(data);
+
+          if (data.user) {
+            location.assign("/");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+
     <!-- JS -->
+
     <!-- <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script> -->
   </body>
