@@ -15,7 +15,11 @@ const BlogSchema = new mongoose.Schema({
     },
     tags : {
         type : String
-    }
+    },
+    img: {
+        type: String,
+        required: false,
+      },
 })
 
 

@@ -1,6 +1,30 @@
 const express = require('express')
 const router = express.Router();
 const Blog = require('../models/Blog');
+const multer = require('multer');
+
+
+// Multer setup
+// define storage for the iamge
+const storage = multer.diskStorage({
+    // destination for files
+    destination: function (req, file, callback) {
+      callback(null, "./public/uploads/images");
+    },
+  
+    // add back to extension
+    filename: function (req, file, callback) {
+      callback(null, Date.now() + file.originalname);
+    },
+  });
+  // uploads parameter for multer
+  const upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 1024 * 1024 * 3,
+    },
+  });
+
 
 
 //@@ Blog -> to go Blog page
@@ -17,11 +41,12 @@ router.get('/',(req,res)=>{
 //@@ Post a Blog
 //@@ POST '/blog/'
 //@@ privet
-router.post('/',async (req,res)=>{
+router.post('/', upload.single("image"), async (req,res)=>{
     let blog = await new Blog({
         title : req.body.title,
         categories : req.body.categories,
         description : req.body.description,
+        img: req.file.filename,
     })
 
     console.log(blog);
@@ -54,6 +79,7 @@ router.get('/editblog/:id',async(req,res)=>{
     res.render('editBlog', {blog : blog})
 });
 
+
 //@@ EditBlog -> to go Upadate blog.
 //@@ Put '/editBlog/:id'
 //@@ privet
@@ -74,6 +100,7 @@ router.put('/editblog/:id',async (req,res)=>{
     }
     // res.render('editBlog')
 });
+
 
 //@@ Delete a blog -> to delete a blog
 //@@ Delete '/blog/:id'

@@ -203,7 +203,15 @@ https://templatemo.com/tm-551-stand-blog
                 <div class="col-lg-12">
                   <div class="blog-post">
                     <div class="blog-thumb">
+                      <% if (!blog.img) { %>
                       <img src="assets/images/blog-post-01.jpg" alt="" />
+                      <% } else { %>
+                      <img
+                        style="max-height: 350px"
+                        src="uploads/images/<%= blog.img %> "
+                        alt=""
+                      />
+                      <% } %>
                     </div>
                     <div class="down-content">
                       <span><%= blog.categories %> </span>

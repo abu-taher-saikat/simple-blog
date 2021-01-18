@@ -11,7 +11,7 @@ what i need???????
 4) create model for user
     @ blog crud
 5) setting up login / register with jwt web token
-6) setting up passport google / facebook auth
+6) upload image on blog
 7) setting up auth middlewares
     @user crud
 8) apply roles
